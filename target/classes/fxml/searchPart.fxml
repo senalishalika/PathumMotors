@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.BillController">
+   <children>
+      <Label layoutX="82.0" layoutY="69.0" prefHeight="17.0" prefWidth="76.0" text="Model Name" />
+      <Label layoutX="82.0" layoutY="108.0" prefHeight="17.0" prefWidth="76.0" text="Part Type" />
+      <Button layoutX="396.0" layoutY="65.0" mnemonicParsing="false"  text="Search" onAction="#searchPart2" />
+   </children>
+</AnchorPane>
