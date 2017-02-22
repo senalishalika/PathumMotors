@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -8,8 +10,17 @@
 
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.BillController">
    <children>
-      <Label layoutX="82.0" layoutY="69.0" prefHeight="17.0" prefWidth="76.0" text="Model Name" />
-      <Label layoutX="82.0" layoutY="108.0" prefHeight="17.0" prefWidth="76.0" text="Part Type" />
-      <Button layoutX="396.0" layoutY="65.0" mnemonicParsing="false"  text="Search" onAction="#searchPart2" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d2d3" height="700.0" layoutX="-2.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="251.0" />
+      <Label layoutX="547.0" layoutY="117.0" prefHeight="20.0" prefWidth="131.0" text="Model Name">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="547.0" layoutY="155.0" prefHeight="17.0" prefWidth="76.0" text="Part Type">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Button layoutX="811.0" layoutY="204.0" mnemonicParsing="false" onAction="#searchPart2" text="Search" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d2d3" height="700.0" layoutX="1119.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="251.0" />
+     
    </children>
 </AnchorPane>

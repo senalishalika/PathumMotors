@@ -5,10 +5,7 @@
  */
 package com.tml.pathummoto.model;
 
-/**
- *
- * @author mas shalika
- */
+
 public class MainPart {
     private String modelName;
     private String partType;

@@ -5,10 +5,7 @@
  */
 package com.tml.pathummoto.model;
 
-/**
- *
- * @author Tishan Madhawa
- */
+
 public class User {
     private String name;
     private String password;

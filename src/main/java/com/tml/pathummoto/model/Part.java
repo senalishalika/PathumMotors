@@ -8,10 +8,6 @@ package com.tml.pathummoto.model;
 import java.time.LocalDate;
 import java.util.Date;
 
-/**
- *
- * @author mas shalika
- */
 public class Part {
     public Part(){
         
@@ -23,11 +19,60 @@ public class Part {
     private String ImageNo; 
     private Date date; 
     private String price;
-
-    public Part(String string, String string0, String string1) {
+    private int quentity;
+    private String quantity="0";
+    private int quant;
+  
+      public Part(String string, String string1,String p2,int q) {
         this.PartName = string;
-        this.price = string0;
+       this.PartType=p2;
+       this.PartNo=string1;
+       this.quant=q;
+       
     }
+        public Part(String string, String string0,int string1) {
+        this.quantity = string;
+        this.PartNo = string0;
+   
+        this.quant = string1;
+        
+    }
+        public Part(String a,String b,String c){
+            this.PartNo=a;
+            this.ImageNo=b;
+            this.PartName=c;
+        }
+      
+    
+    public String getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getQuant() {
+        return quant;
+    }
+
+    public void setQuant(int quant) {
+        this.quant = quant;
+    }
+    
+   
+
+  
+    public int getQuentity() {
+        return quentity;
+    }
+
+    public void setQuentity(int quentity) {
+        this.quentity = quentity;
+    }
+    
+
+  
 
     public String getPrice() {
         return price;

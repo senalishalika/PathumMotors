@@ -36,10 +36,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import static jdk.nashorn.internal.objects.NativeRegExp.source;
 
-/**
- *
- * @author mas shalika
- */
+
 public class PartController implements Initializable {
     @FXML
     private ComboBox model;

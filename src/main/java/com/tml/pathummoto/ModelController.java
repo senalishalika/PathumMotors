@@ -15,10 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
 
-/**
- *
- * @author mas shalika
- */
+
 public class ModelController implements Initializable {
    @FXML
     private TextField model_Name;

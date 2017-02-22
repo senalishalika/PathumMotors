@@ -33,15 +33,18 @@ public class PartDao {
                      append("Part Name", part.getPartName()).
                      append("Model Name", part.getModelName()).
                      append("Image No", part.getImageNo()).
-                      append("Part Type", part.getPartType());
+                      append("Part Type", part.getPartType()).
+                              append("quant",0);
+             
                    
                      
                      
                      
-                     
+        try{             
         coll.insert(doc);
-             System.out.println("Document inserted successfully");
+        }catch(Exception e) {System.out.println("Document inserted successfully");
     }	
+    }
              
           public Part searchPart(String partNo){
      Part part=new Part();
@@ -71,7 +74,41 @@ public class PartDao {
         return part;
             
         }
-          public class ModelDao {
+
+    public Part singlePart(String partNumber) {
+        Part part = new Part();
+        // To connect to mongodb server
+        MongoClient mongoClient = new MongoClient("localhost", 27017);
+
+        // Now connect to your databases
+        DB db = mongoClient.getDB("pathumdb");
+        System.out.println("Connect to database successfully");
+        
+        
+
+        DBCollection coll = db.getCollection("part");
+        System.out.println("Collection user selected successfully");
+
+        BasicDBObject whereQuery = new BasicDBObject();
+        whereQuery.put("_id", partNumber);
+        DBCursor cursor = coll.find(whereQuery);
+        while (cursor.hasNext()) {
+            System.out.println(cursor.next());
+        }
+        BasicDBObject doc=(BasicDBObject) cursor.curr();
+        if(doc!=null){
+            part.setPartName(doc.getString("Part Name"));
+            part.setPartNo(doc.getString("_id"));
+            
+        }
+        
+        return part;
+    }
+
+    public void addBill(Part part) {
+       
+    }
+         
     public void addModel(Model model){
           MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
 			
@@ -92,7 +129,7 @@ public class PartDao {
 				
          
     }
-}
+
           
      public void addMainPart(MainPart mainpart){
         MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
@@ -199,13 +236,16 @@ public class PartDao {
         System.out.println("Collection user selected successfully");
          
         BasicDBObject whereQuery = new BasicDBObject();
-        
+        whereQuery.put("Model Name", model);
+        whereQuery.put("Part Type", mainPart);
         
         DBCursor cursor = coll.find(whereQuery);
         ArrayList<Part> arr = new ArrayList<Part>();
     while (cursor.hasNext()) {
         BasicDBObject obj = (BasicDBObject) cursor.next();
-        Part part=new Part(obj.getString("Part Name"),obj.getString("Part Price"),obj.getString("Date"));
+        Part part=new Part(obj.getString("Image No"),obj.getString("_id"),obj.getString("Part Name"));
+         
+        
         arr.add(part);
         System.out.println(arr);
     }
@@ -233,8 +273,7 @@ public class PartDao {
            return (arr);
      }
      
-     //search parts quantity
-     
+        
      public ArrayList searchpart3(String modelName,String PartType){
          MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
 			
@@ -253,14 +292,69 @@ public class PartDao {
         ArrayList<Part> arr = new ArrayList<Part>();
         while (cursor.hasNext()) {
         BasicDBObject obj = (BasicDBObject) cursor.next();
-        Part part=new Part(obj.getString("Part Name"),obj.getString("Model Name"),obj.getString("Part Type"));
-        System.out.println(obj.getString("Part Name").toString());
+        Part part=new Part(obj.getString("Part Name"),obj.getString("_id"),obj.getString("Part Type"),obj.getInt("quant"));
+       // System.out.println(obj.getString("Image No").toString());
         arr.add(part);
        
     } 
            return (arr);
         
+     }  
+     
+     //
+     
+     public ArrayList searchpart4(String modelName,String PartType){
+         MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+			
+//         // Now connect to your databases
+         DB db = mongoClient.getDB( "pathumdb" );
+         System.out.println("Connect to database successfully");
+         
+         DBCollection coll = db.getCollection("part");
+        System.out.println("Collection user selected successfully");
+         System.out.println(modelName);
+         System.out.println(PartType);
+        BasicDBObject whereQuery = new BasicDBObject();
+        whereQuery.put("Model Name", modelName);
+        whereQuery.put("Part Type", PartType);
+        DBCursor cursor = coll.find(whereQuery);
+        ArrayList<Part> arr = new ArrayList<Part>();
+        while (cursor.hasNext()) {
+        BasicDBObject obj = (BasicDBObject) cursor.next();
+        Part part;
+             part = new Part(obj.getString("Quantity"),obj.getString("_id"),obj.getInt("quant"));
+    
+        arr.add(part);
+       
+    } 
+           return (arr);
         
-     }
+     }  
+     
+      public void addstock(int t,String p){
+            MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+			
+             // Now connect to your databases
+             DB db = mongoClient.getDB( "pathumdb" );
+             System.out.println("Connect to database successfully");
+             
+              DBCollection coll = db.getCollection("part");
+              BasicDBObject updateQuery = new BasicDBObject();
+              updateQuery.append("$set",
+              new BasicDBObject().append("quant", t));
+               BasicDBObject searchQuery = new BasicDBObject();
+               searchQuery.append("_id",p);
+              coll.update(searchQuery, updateQuery);
+               //
+               
+               /*BasicDBObject updateQuery = new BasicDBObject();
+updateQuery.append("$set",
+	new BasicDBObject().append("clients", "888"));
+
+BasicDBObject searchQuery = new BasicDBObject();
+searchQuery.append("type", "vps");
+
+collection.update(searchQuery, updateQuery);*/
+      }
 
 }

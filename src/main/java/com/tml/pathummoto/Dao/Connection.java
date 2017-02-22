@@ -5,10 +5,7 @@
  */
 package com.tml.pathummoto.Dao;
 
-/**
- *
- * @author Tishan Madhawa
- */
+
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
 import com.mongodb.WriteConcern;

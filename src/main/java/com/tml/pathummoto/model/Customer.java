@@ -8,19 +8,44 @@ package com.tml.pathummoto.model;
 import java.time.LocalDate;
 import java.util.Date;
 
-/**
- *
- * @author Tishan Madhawa
- */
+
 public class Customer {
     private String name;
     private String address;
     private String vehicleNo;
     private String vehicleType;
-    private LocalDate dateOfDelivery;
+    private Date dateOfDelivery;
     private String engineNo;
     private String phoneNo;
     private String chassisNo;
+    private int serviceNo;
+    private int freeServiceNo;
+
+    public int getFreeServiceNo() {
+        return freeServiceNo;
+    }
+
+    public void setFreeServiceNo(int freeServiceNo) {
+        this.freeServiceNo = freeServiceNo;
+    }
+    private int payment;
+    public int getServiceNo() {
+        return serviceNo;
+    }
+
+    public void setServiceNo(int ServiceNo) {
+        this.serviceNo = ServiceNo;
+    }
+
+    public int getPayment() {
+        return payment;
+    }
+
+    public void setPayment(int payment) {
+        this.payment = payment;
+    }
+    
+    
     
 
     public String getName() {
@@ -55,11 +80,11 @@ public class Customer {
         this.vehicleType = vehicleType;
     }
 
-    public LocalDate getDateOfDelivery() {
+    public Date getDateOfDelivery() {
         return dateOfDelivery;
     }
 
-    public void setDateOfDelivery(LocalDate dateOfDelivery) {
+    public void setDateOfDelivery(Date dateOfDelivery) {
         this.dateOfDelivery = dateOfDelivery;
     }
 

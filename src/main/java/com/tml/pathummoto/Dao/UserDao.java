@@ -13,10 +13,7 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.tml.pathummoto.model.User;
 
-/**
- *
- * @author Tishan Madhawa
- */
+
 public class UserDao {
 
     public void signup(User user) {

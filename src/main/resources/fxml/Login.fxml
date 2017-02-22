@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="anchorPane" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.FXMLController">
+<AnchorPane fx:id="AnchorPane" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.FXMLController">
     <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="438.0" layoutY="172.0" stroke="#1500ff" strokeType="INSIDE" width="1370.0" />
         <PasswordField fx:id="password" layoutX="599.0" layoutY="380.0" minHeight="16" minWidth="69" prefHeight="35.0" prefWidth="232.0" />

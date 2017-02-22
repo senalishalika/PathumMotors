@@ -16,11 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author Tishan Madhawa
- */
+
 public class SignupController implements Initializable {
 
     /**

@@ -6,8 +6,39 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.BillController">
+<AnchorPane fx:id="AnchorPane" prefHeight="700.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.BillController">
    <children>
+        <MenuBar prefHeight="25.0" prefWidth="1370.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="home" onAction="#home1"/>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Customer">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#addcustomer" text="Add Customer" />
+            </items>
+          </Menu>
+           
+         
+          <Menu mnemonicParsing="false" text="Model">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#addModel1" text="Add Model" />
+            </items>
+          </Menu>
+           <Menu mnemonicParsing="false" text="Part Type">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#addMainPart" text="Add Part Type" />
+            </items>
+          </Menu>
+           <Menu mnemonicParsing="false" text="Part">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#addPart" text="Add Part" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
       <Label layoutX="70.0" layoutY="91.0" prefHeight="17.0" prefWidth="123.0" text="Model Name" />
       <TextField fx:id="model_Name" layoutX="206.0" layoutY="96.0" prefHeight="25.0" prefWidth="323.0" />
       <Button layoutX="343.0" layoutY="155.0" mnemonicParsing="false" onAction="#addModel" text="Add" />

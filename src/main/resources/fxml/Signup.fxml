@@ -9,8 +9,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="700"  style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.SignupController">
+<AnchorPane fx:id="AnchorPane" prefHeight="700"  style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.SignupController">
     <children>
+        
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="438.0" layoutX="278.0" layoutY="172.0" stroke="#1500ff" strokeType="INSIDE" width="785.0" />
         <PasswordField id="password" fx:id="password" layoutX="599.0" layoutY="343.0" minHeight="16" minWidth="69" prefHeight="35.0" prefWidth="437.0" promptText="Password" />
         <PasswordField id="Cpassword" fx:id="Cpassword" layoutX="599.0" layoutY="400" minHeight="16" minWidth="69" prefHeight="35.0" prefWidth="437.0" promptText="Confirm Password" />

@@ -11,10 +11,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.tml.pathummoto.model.Model;
 
-/**
- *
- * @author mas shalika
- */
+
 public class ModelDao {
     public void addModel(Model model){
           MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
