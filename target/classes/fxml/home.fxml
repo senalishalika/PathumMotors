@@ -40,10 +40,10 @@
               <MenuItem mnemonicParsing="false" onAction="#addPart" text="Add Part" />
             </items>
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#searchpart" text="Search Model" />
+              <MenuItem mnemonicParsing="false" onAction="#searchpart" text="Search Part" />
             </items>
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#addStock" text="Add Model" />
+              <MenuItem mnemonicParsing="false" onAction="#addStock" text="Add Stock" />
             </items>
           </Menu>
         </menus>

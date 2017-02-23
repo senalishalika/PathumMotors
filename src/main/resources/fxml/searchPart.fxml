@@ -8,9 +8,49 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.BillController">
-   <children>
+<AnchorPane fx:id="AnchorPane" prefHeight="700.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.BillController">
+  <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d2d3" height="700.0" layoutX="-2.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="251.0" />
+      <MenuBar prefHeight="25.0" prefWidth="1370.0">
+          <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#home1" text="home" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Customer">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#addcustomer" text="Add Customer" />
+            </items>
+          </Menu>
+           
+         
+          <Menu mnemonicParsing="false" text="Model">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#addModel1" text="Add Model" />
+            </items>
+            
+          </Menu>
+           <Menu mnemonicParsing="false" text="Part Type">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#addMainPart" text="Add Part Type" />
+            </items>
+          </Menu>
+           <Menu mnemonicParsing="false" text="Part">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#addPart" text="Add Part" />
+            </items>
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#searchpart" text="Search Part" />
+            </items>
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#addStock" text="Add Stock" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      
+      
       <Label layoutX="547.0" layoutY="117.0" prefHeight="20.0" prefWidth="131.0" text="Model Name">
          <font>
             <Font size="14.0" />
@@ -21,6 +61,11 @@
          </font></Label>
       <Button layoutX="811.0" layoutY="204.0" mnemonicParsing="false" onAction="#searchPart2" text="Search" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d2d3" height="700.0" layoutX="1119.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="251.0" />
+      <Label layoutX="557.0" layoutY="54.0" prefHeight="17.0" prefWidth="343.0" text="Search Part Details">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
      
    </children>
 </AnchorPane>

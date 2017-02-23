@@ -357,9 +357,10 @@ public class BillController {
         arr1 = partdao.getModelData();
         ObservableList<String> observableListOfObjects = FXCollections.observableList(arr1);
         comboBox = new ComboBox<String>(observableListOfObjects);
-        comboBox.setLayoutX(250.0);
-        comboBox.setLayoutY(20.0);
-       
+        comboBox.setLayoutX(644.0);
+        comboBox.setLayoutY(213.0);
+        comboBox.setPrefWidth(150);
+
         comboBox.setId("modelName");
 
         comboBox.valueProperty().addListener(new ChangeListener<String>() {
@@ -411,16 +412,19 @@ public class BillController {
         String PartType = part_type.getText();
         String model1 = comboBox.getEditor().getText();
         String path1 = path.getText();
-        if(PartType.length()==0 ){
+        if((PartType.length()==0 )||(model1.length()==0)||(path1.length()==0)||(!PartType.matches("^[ a-zA-Z]*$"))){
+              if(PartType.length()==0 ){
             labelparttype2.setText("Fill this Field");
-        }else if(model1.length()==0){
+        }if(model1.length()==0){
             labelmodel2.setText("Fill this Field");
-        }else if(path1.length()==0){
+        }if(path1.length()==0){
             labelimage2.setText("Fill this Field");
 
-        }else if(!PartType.matches("^[ a-zA-Z]*$")){
+        }if(!PartType.matches("^[ a-zA-Z]*$")){
              labelparttype2.setText("Part type is invalid");
-        }else{
+        }
+        }
+      else{
         MainPart mainpart = new MainPart();
         mainpart.setImageName(path1);
         mainpart.setModelName(model1);
@@ -471,23 +475,28 @@ public class BillController {
         PartType = comboBox4.getEditor().getText();
         String PartNam = part_nam.getText();
         
-        if(ModelName.length()==0){
+  
+        if((ModelName.length()==0)||(PartNo.length()==0)||(ImageNo.length()==0)||(PartType.length()==0)||(PartNam.length()==0)||(!ImageNo.matches("[0-9]+"))||(!PartType.matches("^[ a-zA-Z]*$"))||(!PartNam.matches("^[ a-zA-Z]*$"))){
+        if(ModelName.length()==0)
+        {
             labelmodel3.setText("Fill this field");
-        }else if(PartNo.length()==0){
+        }if(PartNo.length()==0){
             labelpartno.setText("Fill this field");
-        }else if(ImageNo.length()==0){
+        }if(ImageNo.length()==0){
             labelimageno.setText("Fill this field");
-        }else if(PartType.length()==0){
+        }if(PartType.length()==0){
             labelparttype3.setText("Fill this field");
-        }else if(PartNam.length()==0){
+        }if(PartNam.length()==0){
             labelpartname.setText("Fill this field");
-        }else if(!ImageNo.matches("[0-9]+")){
+        }if(!ImageNo.matches("[0-9]+")){
             labelimageno.setText("Invalid");
-        }else if(!PartType.matches("^[ a-zA-Z]*$")){
+        }if(!PartType.matches("^[ a-zA-Z]*$")){
             labelparttype3.setText("Invalid part type");
-        }else if(!PartNam.matches("^[ a-zA-Z]*$")){
-             labelpartname.setText("Invalid part type"); 
-
+        }if(!PartNam.matches("^[ a-zA-Z]*$")){
+             labelpartname.setText("Invalid part type");
+        
+        }
+        
         }else{
         Part part = new Part();
         part.setImageNo(ImageNo);
@@ -510,9 +519,10 @@ public class BillController {
         arr1 = partdao.getModelData();
         ObservableList<String> observableListOfObjects = FXCollections.observableList(arr1);
         comboBox3 = new ComboBox<String>(observableListOfObjects);
-        comboBox3.setLayoutX(245.0);
-        comboBox3.setLayoutY(27.0);
-
+        comboBox3.setLayoutX(692.0);
+        comboBox3.setLayoutY(195.0);
+        comboBox3.setPrefWidth(150);
+ 
         FileChooser chooser = new FileChooser();
 
         final AnchorPane anchorPane = (AnchorPane) root;
@@ -531,8 +541,9 @@ public class BillController {
                 observableListOfObjects1 = FXCollections.observableList(arr2);
                 System.out.println(observableListOfObjects1);
                 comboBox4 = new ComboBox<String>(observableListOfObjects1);
-                comboBox4.setLayoutX(245.0);
-                comboBox4.setLayoutY(75.0);
+                comboBox4.setLayoutX(692.0);
+                comboBox4.setLayoutY(237.0);
+                comboBox4.setPrefWidth(150);
                 comboBox4.valueProperty().addListener(new ChangeListener<String>() {
                     @Override
                     public void changed(ObservableValue ov, String t, String t1) {
@@ -572,6 +583,8 @@ public class BillController {
             if(ModelName.length()== 0){
                 
                 labelmodel.setText("Fill this field");
+            }else if((!ModelName.matches("^[ a-zA-Z]*$"))||(!ModelName.matches("[0-9]+"))){
+                labelmodel.setText("Invalid Model Name");
             }else{
             Model model = new Model();
             model.setModelName(ModelName);
@@ -880,7 +893,7 @@ public class BillController {
     }
     
           
-     
+     //for part search table
     @FXML
     public void searchPart2(ActionEvent event) throws IOException {
         String model = comboBox5.getEditor().getText();
@@ -933,13 +946,15 @@ public class BillController {
             partTable3= new TableView<Part>();
            ObservableList<String> observableListOfObjects = FXCollections.observableList(arr1);
         comboBox7 = new ComboBox<String>(observableListOfObjects);
-        comboBox7.setLayoutX(245.0);
-        comboBox7.setLayoutY(40.0);
+         comboBox7.setLayoutX(713.0);
+            
+        comboBox7.setLayoutY(115.0);
+        comboBox7.setPrefWidth(150.0);
         
-         partTable3.setLayoutX(150);
-        partTable3.setLayoutY(200);
-        partTable3.setPrefHeight(300);
-        partTable3.setPrefWidth(450);
+         partTable3.setLayoutX(498.0);
+        partTable3.setLayoutY(251.0);
+        partTable3.setPrefHeight(356.0);
+        partTable3.setPrefWidth(399.0);
         
           final AnchorPane anchorPane = (AnchorPane) root;
            anchorPane.getChildren().add(comboBox7);
@@ -957,8 +972,9 @@ public class BillController {
                 observableListOfObjects5 = FXCollections.observableList(arr2);
                 System.out.println(observableListOfObjects5);
                 comboBox8 = new ComboBox<String>(observableListOfObjects5);
-                comboBox8.setLayoutX(245.0);
-                comboBox8.setLayoutY(100.0);
+                 comboBox8.setLayoutX(713.0);
+                comboBox8.setLayoutY(153.0);
+                comboBox8.setPrefWidth(150);
                 comboBox8.valueProperty().addListener(new ChangeListener<String>() {
                     @Override
                     public void changed(ObservableValue ov, String t, String t1) {
@@ -1014,9 +1030,9 @@ public class BillController {
        TableColumn<Part,String> first = new TableColumn<Part,String>("Part No");
        TableColumn<Part,String> second = new TableColumn<Part,String>("Quentity");
         second.setCellValueFactory(new PropertyValueFactory("quantity"));
-        second.setMinWidth(250);
+        second.setMinWidth(399/2);
         first.setCellValueFactory(new PropertyValueFactory("PartNo"));
-        first.setMinWidth(250);
+        first.setMinWidth(399/2);
           
         //second.setCellFactory(TextFieldTableCell.<Part>forTableColumn());
         second.setCellFactory(TextFieldTableCell.<Part>forTableColumn());

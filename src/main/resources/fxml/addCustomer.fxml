@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="AnchorPane" prefHeight="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.BillController">
    <children>
-        <MenuBar prefHeight="25.0" prefWidth="1370.0">
+          <MenuBar prefHeight="25.0" prefWidth="1370.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -28,6 +28,7 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#addModel1" text="Add Model" />
             </items>
+            
           </Menu>
            <Menu mnemonicParsing="false" text="Part Type">
             <items>
@@ -37,6 +38,12 @@
            <Menu mnemonicParsing="false" text="Part">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#addPart" text="Add Part" />
+            </items>
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#searchpart" text="Search Part" />
+            </items>
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#addStock" text="Add Stock" />
             </items>
           </Menu>
         </menus>
@@ -122,5 +129,6 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Label text="Label" />
    </children>
 </AnchorPane>
