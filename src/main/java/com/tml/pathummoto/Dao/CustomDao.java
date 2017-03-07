@@ -44,6 +44,7 @@ public class CustomDao {
                  append("freeServiceNo", customer.getFreeServiceNo()).
                  append("payment", customer.getPayment()).
                  append("serviceNo", customer.getServiceNo()).
+                 append("lastKm", customer.getLastKm()).
                  append("phoneNo", customer.getPhoneNo());
 
             coll.insert(doc);
@@ -72,12 +73,15 @@ public class CustomDao {
             System.out.println(cursor.next());
         }
         BasicDBObject doc=(BasicDBObject) cursor.curr();
+        System.out.println("doc"+doc);
         if(doc!=null){
+            customer.setVehicleNo(doc.getString("_id"));
             customer.setName(doc.getString("name"));
             customer.setPayment(doc.getInt("payment"));
             customer.setFreeServiceNo(doc.getInt("freeServiceNo"));
             customer.setServiceNo(doc.getInt("serviceNo"));
             customer.setDateOfDelivery(doc.getDate("dateOfDelivery"));
+            customer.setLastKm(doc.getInt("lastKm"));
            
             
         }
@@ -104,7 +108,7 @@ public class CustomDao {
         System.out.println(customer.getVehicleNo());
         DBObject query = new BasicDBObject("_id", customer.getVehicleNo());
 		DBObject update = new BasicDBObject();
-		update.put("$set", new BasicDBObject("payment",customer.getPayment()).append("freeServiceNo", customer.getFreeServiceNo()).append("serviceNo",customer.getServiceNo()).append("dateOfDelivery",customer.getDateOfDelivery()));
+		update.put("$set", new BasicDBObject("payment",customer.getPayment()).append("freeServiceNo", customer.getFreeServiceNo()).append("serviceNo",customer.getServiceNo()).append("dateOfDelivery",customer.getDateOfDelivery()).append("lastKm",customer.getLastKm()));
 		
 		WriteResult result = coll.update(query, update);
                 System.out.println(result);

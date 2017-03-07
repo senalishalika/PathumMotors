@@ -20,8 +20,9 @@ public class Part {
     private Date date; 
     private String price;
     private int quentity;
-    private String quantity="0";
+     private String quantity="0";
     private int quant;
+
   
       public Part(String string, String string1,String p2,int q) {
         this.PartName = string;
@@ -30,24 +31,17 @@ public class Part {
        this.quant=q;
        
     }
-        public Part(String string, String string0,int string1) {
+      public Part(String string, String string0,int string1) {
         this.quantity = string;
         this.PartNo = string0;
    
         this.quant = string1;
         
     }
-        public Part(String a,String b,String c){
-            this.PartNo=a;
-            this.ImageNo=b;
-            this.PartName=c;
-        }
-      
-    
     public String getQuantity() {
         return this.quantity;
     }
-
+ 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
@@ -59,10 +53,10 @@ public class Part {
     public void setQuant(int quant) {
         this.quant = quant;
     }
-    
+   
    
 
-  
+    
     public int getQuentity() {
         return quentity;
     }
@@ -72,7 +66,13 @@ public class Part {
     }
     
 
-  
+    public Part(String string, String string0, String string1) {
+        this.ImageNo = string;
+        this.PartNo = string0;
+   
+        this.PartName = string1;
+        
+    }
 
     public String getPrice() {
         return price;

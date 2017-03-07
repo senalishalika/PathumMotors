@@ -18,7 +18,7 @@ public class Excel {
    public int load(String no) 
       throws BiffException, IOException, WriteException
    {
-      Workbook workbook = Workbook.getWorkbook(new File("E:\\project\\New folder (2)\\New folder\\pathumMoto\\Price-List1.xls"));
+      Workbook workbook = Workbook.getWorkbook(new File("C:\\Users\\mas shalika\\Downloads\\Compressed\\pathumMoto\\Price-List1.xls"));
       int b=0;
       try{
       Sheet sheet = workbook.getSheet(0);

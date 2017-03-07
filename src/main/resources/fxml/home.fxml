@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -8,11 +10,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="AnchorPane" prefHeight="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.BillController">
+<AnchorPane fx:id="AnchorPane" prefHeight="700.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.BillController">
    <children>
-      <MenuBar prefHeight="25.0" prefWidth="1370.0">
+      <MenuBar cacheHint="SPEED" prefHeight="25.0" prefWidth="1370.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="Home">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#home1" text="home" />
             </items>
@@ -20,6 +22,9 @@
           <Menu mnemonicParsing="false" text="Customer">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#addcustomer" text="Add Customer" />
+            </items>
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#searchcustomer" text="Add Customer" />
             </items>
           </Menu>
            
@@ -47,8 +52,15 @@
             </items>
           </Menu>
         </menus>
+         <effect>
+            <Lighting bumpInput="$null" diffuseConstant="1.97" specularConstant="0.0" specularExponent="0.0" surfaceScale="8.14">
+               <light>
+                  <Light.Distant color="#3e71f7" />
+               </light>
+            </Lighting>
+         </effect>
       </MenuBar>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="676.0" layoutX="-1.0" layoutY="24.0" stroke="BLACK" strokeType="INSIDE" width="559.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cdcdcd" height="676.0" layoutX="-1.0" layoutY="24.0" stroke="BLACK" strokeType="INSIDE" width="559.0" />
       <Label layoutX="573.0" layoutY="44.0" prefHeight="33.0" prefWidth="153.0" text="Motor Cycle No" textFill="#5900ff">
          <font>
             <Font size="14.0" />
@@ -68,24 +80,24 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="partNo1" layoutX="573.0" layoutY="565.0" prefHeight="33.0" prefWidth="153.0" text="Total Cost" textFill="#5900ff">
+      <Label fx:id="partNo1" layoutX="573.0" layoutY="563.0" prefHeight="33.0" prefWidth="153.0" text="Total Cost" textFill="#5900ff">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="amount" layoutX="699.0" layoutY="569.0" prefHeight="25.0" prefWidth="228.0" />
-      <TextField fx:id="payment" layoutX="700.0" layoutY="606.0" prefHeight="10.0" prefWidth="228.0" />
-      <Label fx:id="partNo11" layoutX="574.0" layoutY="602.0" prefHeight="33.0" prefWidth="153.0" text="Payment" textFill="#5900ff">
+      <TextField fx:id="amount" editable="false" layoutX="699.0" layoutY="567.0" prefHeight="25.0" prefWidth="228.0" />
+      <TextField fx:id="payment" layoutX="700.0" layoutY="608.0" prefHeight="10.0" prefWidth="228.0" />
+      <Label fx:id="partNo11" layoutX="574.0" layoutY="604.0" prefHeight="33.0" prefWidth="153.0" text="Payment" textFill="#5900ff">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="7.0" layoutY="56.0" prefHeight="33.0" prefWidth="146.0" text="Model of Motor Cycle" textFill="#5900ff">
+      <Label layoutX="7.0" layoutY="56.0" prefHeight="33.0" prefWidth="146.0" text="Model of Motor Cycle" textFill="#1100ff">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="7.0" layoutY="89.0" prefHeight="33.0" prefWidth="146.0" text="Main Part" textFill="#5900ff">
+      <Label layoutX="7.0" layoutY="89.0" prefHeight="33.0" prefWidth="146.0" text="Main Part" textFill="#000dff">
          <font>
             <Font size="14.0" />
          </font>
@@ -106,7 +118,7 @@
       </Label>
       <Button fx:id="print" layoutX="902.0" layoutY="652.0" mnemonicParsing="false" onAction="#Bill" prefHeight="25.0" prefWidth="119.0" text="Print" />
       <Button layoutX="944.0" layoutY="48.0" mnemonicParsing="false" onAction="#checkCustomer" text="Check" />
-      <Label fx:id="details" layoutX="652.0" layoutY="97.0" prefHeight="56.0" prefWidth="678.0" />
+      <Label fx:id="details" layoutX="563.0" layoutY="75.0" prefHeight="83.0" prefWidth="419.0" />
       <TextField fx:id="servicePayment" layoutX="1097.0" layoutY="93.0" prefHeight="25.0" prefWidth="228.0" />
       <Label layoutX="986.0" layoutY="89.0" prefHeight="33.0" prefWidth="153.0" text="Service payment" textFill="#5900ff">
          <font>
@@ -114,5 +126,12 @@
          </font>
       </Label>
       <Button layoutX="1179.0" layoutY="125.0" mnemonicParsing="false" onAction="#addServicePayment" prefHeight="25.0" prefWidth="146.0" text="Add Service Payment" />
+      <Label fx:id="cycleNumberLabel" layoutX="700.0" layoutY="73.0" prefHeight="19.0" prefWidth="252.0" textFill="#e80000" />
+      <Label fx:id="kmLabel" layoutX="1086.0" layoutY="73.0" prefHeight="19.0" prefWidth="252.0" textFill="#e80000" />
+      <Label fx:id="paymentLabel" layoutX="688.0" layoutY="635.0" prefHeight="19.0" prefWidth="252.0" textFill="#e80000" />
+      <Label fx:id="amountDetails" layoutX="696.0" layoutY="590.0" prefHeight="19.0" prefWidth="252.0" textFill="#e80000" />
+      <Label fx:id="partLabel" layoutX="700.0" layoutY="183.0" prefHeight="19.0" prefWidth="252.0" textFill="#e80000" />
+      <Label fx:id="serviceLabel" layoutX="978.0" layoutY="128.0" prefHeight="19.0" prefWidth="195.0" textFill="#e80000" />
+      <Label fx:id="rowLabel" layoutX="997.0" layoutY="595.0" prefHeight="19.0" prefWidth="252.0" textFill="#e80000" />
    </children>
 </AnchorPane>

@@ -14,9 +14,9 @@
    <children>
      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d2d3" height="700.0" layoutX="-2.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="251.0" />
 
-      <MenuBar prefHeight="25.0" prefWidth="1370.0">
-          <menus>
-          <Menu mnemonicParsing="false" text="File">
+       <MenuBar cacheHint="SPEED" prefHeight="25.0" prefWidth="1370.0">
+        <menus>
+          <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="Home">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#home1" text="home" />
             </items>
@@ -24,6 +24,9 @@
           <Menu mnemonicParsing="false" text="Customer">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#addcustomer" text="Add Customer" />
+            </items>
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#searchcustomer" text="Add Customer" />
             </items>
           </Menu>
            
@@ -51,6 +54,7 @@
             </items>
           </Menu>
         </menus>
+        
       </MenuBar>
       <Label layoutX="570.0" layoutY="239.0" text="Part Type">
          <font>

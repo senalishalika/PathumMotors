@@ -301,8 +301,6 @@ public class PartDao {
         
      }  
      
-     //
-     
      public ArrayList searchpart4(String modelName,String PartType){
          MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
 			
@@ -331,7 +329,7 @@ public class PartDao {
         
      }  
      
-      public void addstock(int t,String p){
+     public void addstock(int t,String p){
             MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
 			
              // Now connect to your databases

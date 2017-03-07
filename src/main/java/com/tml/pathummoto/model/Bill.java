@@ -5,6 +5,9 @@
  */
 package com.tml.pathummoto.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -14,15 +17,28 @@ public class Bill {
     private int service;
     private int totalCost;
     private int payment;
+    private String parts;
 
-    public Date getDate() {
+    public String getParts() {
+        return parts;
+    }
+
+    public void setParts(String parts) {
+        this.parts = parts;
+    }
+
+    public String getDate() {
         return date;
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        
+DateFormat outputFormatter = new SimpleDateFormat("MM/dd/yyyy");
+String output = outputFormatter.format(date);
+        
+        this.date = ""+output;
     }
-    private Date date;
+    private String date;
 
     public String getVehicleNo() {
         return vehicleNo;

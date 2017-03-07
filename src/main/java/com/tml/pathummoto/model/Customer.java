@@ -18,6 +18,15 @@ public class Customer {
     private String engineNo;
     private String phoneNo;
     private String chassisNo;
+    private int lastKm;
+
+    public int getLastKm() {
+        return lastKm;
+    }
+
+    public void setLastKm(int lastKm) {
+        this.lastKm = lastKm;
+    }
     private int serviceNo;
     private int freeServiceNo;
 

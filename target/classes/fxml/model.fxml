@@ -11,9 +11,9 @@
 <AnchorPane fx:id="AnchorPane" prefHeight="700.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.BillController">
    <children>
        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d2d3" height="700.0" layoutX="-2.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="251.0" />
-          <MenuBar prefHeight="25.0" prefWidth="1370.0">
+           <MenuBar cacheHint="SPEED" prefHeight="25.0" prefWidth="1370.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="Home">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#home1" text="home" />
             </items>
@@ -21,6 +21,9 @@
           <Menu mnemonicParsing="false" text="Customer">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#addcustomer" text="Add Customer" />
+            </items>
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#searchcustomer" text="Add Customer" />
             </items>
           </Menu>
            
@@ -48,6 +51,7 @@
             </items>
           </Menu>
         </menus>
+        
       </MenuBar>
       <Label layoutX="394.0" layoutY="256.0" prefHeight="20.0" prefWidth="131.0" text="Model Name">
          <font>

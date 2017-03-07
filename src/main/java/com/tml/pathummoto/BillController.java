@@ -6,6 +6,7 @@
 package com.tml.pathummoto;
 
 import com.mongodb.BasicDBObject;
+import com.tml.pathummoto.Dao.BillDao;
 import com.tml.pathummoto.Dao.CustomDao;
 import com.tml.pathummoto.Dao.ModelDao;
 import com.tml.pathummoto.Dao.PartDao;
@@ -120,12 +121,11 @@ public class BillController {
                 } catch (IOException ex) {
                     Logger.getLogger(BillController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
 
         });
 
-        
         comboBox2.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue ov, String t, String t1) {
@@ -143,19 +143,19 @@ public class BillController {
             }
 
         });
-        
-         billPartTable.setLayoutX(575);
+
+        billPartTable.setLayoutX(575);
         billPartTable.setLayoutY(215);
         billPartTable.setPrefWidth(769);
         billPartTable.setPrefHeight(330);
-        
+
         partTable.setLayoutX(0);
         partTable.setLayoutY(450);
         partTable.setPrefWidth(500);
         partTable.setPrefHeight(250);
 
         AnchorPane anchorPane = (AnchorPane) root;
-        anchorPane.getChildren().addAll(comboBox1, comboBox2, image, partTable,billPartTable);
+        anchorPane.getChildren().addAll(comboBox1, comboBox2, image, partTable, billPartTable);
 
         Scene scene = new Scene(anchorPane);
 
@@ -165,6 +165,7 @@ public class BillController {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     public void home1() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
@@ -185,12 +186,11 @@ public class BillController {
             @Override
             public void changed(ObservableValue ov, String t, String t1) {
                 comboBox1.getEditor().setText(t1);
-                
+
             }
 
         });
 
-        
         comboBox2.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue ov, String t, String t1) {
@@ -199,19 +199,19 @@ public class BillController {
             }
 
         });
-        
-         billPartTable.setLayoutX(575);
+
+        billPartTable.setLayoutX(575);
         billPartTable.setLayoutY(215);
         billPartTable.setPrefWidth(769);
         billPartTable.setPrefHeight(330);
-        
+
         partTable.setLayoutX(0);
         partTable.setLayoutY(450);
         partTable.setPrefWidth(500);
         partTable.setPrefHeight(250);
 
         AnchorPane anchorPane = (AnchorPane) root;
-        anchorPane.getChildren().addAll(comboBox1, comboBox2, image, partTable,billPartTable);
+        anchorPane.getChildren().addAll(comboBox1, comboBox2, image, partTable, billPartTable);
 
         Scene scene = new Scene(anchorPane);
         Stage stage = (Stage) AnchorPane.getScene().getWindow();
@@ -219,8 +219,9 @@ public class BillController {
 
         stage.setTitle("Pathum Motors");
         stage.setScene(scene);
-        stage.show();}
-    
+        stage.show();
+    }
+
     @FXML
     public void searchMainPart() throws IOException {
         String model = comboBox1.getEditor().getText();
@@ -254,31 +255,29 @@ public class BillController {
         String mainPart = comboBox2.getEditor().getText();
         final PartDao partdao = new PartDao();
         Image img = new Image("file:" + partdao.getImage(model, mainPart));
-         //partTable.getColumns().clear();
+        //partTable.getColumns().clear();
         image.setImage(img);
         image.setLayoutX(0);
         image.setLayoutY(130.0);
         image.setFitHeight(300);
         image.setFitWidth(500);
-          
+
         System.out.println("file:" + partdao.getImage(model, mainPart));
         ArrayList<Part> arr = new ArrayList<Part>();
         arr = partdao.searchParts(model, mainPart);
-        
-       final ObservableList<Part> data =
-        FXCollections.observableArrayList();
-        for(int i=0;i<arr.size();i++){
-            
-            Part part=arr.get(i);
-             Excel excel=new Excel();
-             int price=excel.load(part.getPartNo());
-             part.setPrice(""+price);
-           
-           data.add(part);
-           
+
+        final ObservableList<Part> data
+                = FXCollections.observableArrayList();
+        for (int i = 0; i < arr.size(); i++) {
+
+            Part part = arr.get(i);
+            Excel excel = new Excel();
+            int price = excel.load(part.getPartNo());
+            part.setPrice("" + price);
+
+            data.add(part);
+
         }
-        
-       
 
         TableColumn Number = new TableColumn("Image Number");
         Number.setMinWidth(100);
@@ -301,25 +300,31 @@ public class BillController {
                 new PropertyValueFactory<Part, String>("price")
         );
 
-
         partTable.getColumns().addAll(Number, partId, partName, Price);
         partTable.setItems(data);
-        
-
-    
 
     }
+
     @FXML
     public void addcustomer() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/addCustomer.fxml"));
         AnchorPane anchorPane = (AnchorPane) root;
         Scene scene = new Scene(anchorPane);
         Stage stage = (Stage) AnchorPane.getScene().getWindow();
+
         stage.setMaximized(true);
 
         stage.setTitle("Pathum Motors");
         stage.setScene(scene);
         stage.show();
+
+    }
+
+    @FXML
+    public void searchcustomer(ActionEvent event) throws IOException {
+        CustomerController customer = new CustomerController();
+        Stage stage = (Stage) AnchorPane.getScene().getWindow();
+        customer.searchCustomer(stage);
 
     }
 
@@ -357,9 +362,8 @@ public class BillController {
         arr1 = partdao.getModelData();
         ObservableList<String> observableListOfObjects = FXCollections.observableList(arr1);
         comboBox = new ComboBox<String>(observableListOfObjects);
-        comboBox.setLayoutX(644.0);
-        comboBox.setLayoutY(213.0);
-        comboBox.setPrefWidth(150);
+        comboBox.setLayoutX(250.0);
+        comboBox.setLayoutY(20.0);
 
         comboBox.setId("modelName");
 
@@ -397,42 +401,40 @@ public class BillController {
 
     }
 //add main parts
-      @FXML
-      private Label labelmodel2;
-      @FXML
-      private Label labelparttype2;
-      @FXML
-      private Label labelimage2;
+    @FXML
+    private Label labelmodel2;
+    @FXML
+    private Label labelparttype2;
+    @FXML
+    private Label labelimage2;
+
     @FXML
     public void addMainParts(ActionEvent event) {
         labelmodel2.setText("");
         labelparttype2.setText("");
         labelimage2.setText("");
-        
+
         String PartType = part_type.getText();
         String model1 = comboBox.getEditor().getText();
         String path1 = path.getText();
-        if((PartType.length()==0 )||(model1.length()==0)||(path1.length()==0)||(!PartType.matches("^[ a-zA-Z]*$"))){
-              if(PartType.length()==0 ){
+        if (PartType.length() == 0) {
             labelparttype2.setText("Fill this Field");
-        }if(model1.length()==0){
+        } else if (model1.length() == 0) {
             labelmodel2.setText("Fill this Field");
-        }if(path1.length()==0){
+        } else if (path1.length() == 0) {
             labelimage2.setText("Fill this Field");
 
-        }if(!PartType.matches("^[ a-zA-Z]*$")){
-             labelparttype2.setText("Part type is invalid");
-        }
-        }
-      else{
-        MainPart mainpart = new MainPart();
-        mainpart.setImageName(path1);
-        mainpart.setModelName(model1);
-        mainpart.setPartType(PartType);
+        } else if (!PartType.matches("^[ a-zA-Z]*$")) {
+            labelparttype2.setText("Part type is invalid");
+        } else {
+            MainPart mainpart = new MainPart();
+            mainpart.setImageName(path1);
+            mainpart.setModelName(model1);
+            mainpart.setPartType(PartType);
 
-        PartDao partdao = new PartDao();
-        partdao.addMainPart(mainpart);
-        System.out.println("senali=" + model1);
+            PartDao partdao = new PartDao();
+            partdao.addMainPart(mainpart);
+            System.out.println("senali=" + model1);
         }
     }
 
@@ -453,16 +455,17 @@ public class BillController {
     TextField image_no;
     @FXML
     TextField part_nam;
-     @FXML
-     Label labelparttype3;
-     @FXML
-     Label labelmodel3;
-     @FXML
-     Label labelpartno;
-     @FXML
-     Label labelpartname;
-     @FXML
-     Label labelimageno;
+    @FXML
+    Label labelparttype3;
+    @FXML
+    Label labelmodel3;
+    @FXML
+    Label labelpartno;
+    @FXML
+    Label labelpartname;
+    @FXML
+    Label labelimageno;
+
     @FXML
     public void addPart1(ActionEvent event) throws IOException {
         String ModelName = comboBox3.getEditor().getText();
@@ -474,38 +477,33 @@ public class BillController {
         String PartType;
         PartType = comboBox4.getEditor().getText();
         String PartNam = part_nam.getText();
-        
-  
-        if((ModelName.length()==0)||(PartNo.length()==0)||(ImageNo.length()==0)||(PartType.length()==0)||(PartNam.length()==0)||(!ImageNo.matches("[0-9]+"))||(!PartType.matches("^[ a-zA-Z]*$"))||(!PartNam.matches("^[ a-zA-Z]*$"))){
-        if(ModelName.length()==0)
-        {
+
+        if (ModelName.length() == 0) {
             labelmodel3.setText("Fill this field");
-        }if(PartNo.length()==0){
+        } else if (PartNo.length() == 0) {
             labelpartno.setText("Fill this field");
-        }if(ImageNo.length()==0){
+        } else if (ImageNo.length() == 0) {
             labelimageno.setText("Fill this field");
-        }if(PartType.length()==0){
+        } else if (PartType.length() == 0) {
             labelparttype3.setText("Fill this field");
-        }if(PartNam.length()==0){
+        } else if (PartNam.length() == 0) {
             labelpartname.setText("Fill this field");
-        }if(!ImageNo.matches("[0-9]+")){
+        } else if (!ImageNo.matches("[0-9]+")) {
             labelimageno.setText("Invalid");
-        }if(!PartType.matches("^[ a-zA-Z]*$")){
+        } else if (!PartType.matches("^[ a-zA-Z]*$")) {
             labelparttype3.setText("Invalid part type");
-        }if(!PartNam.matches("^[ a-zA-Z]*$")){
-             labelpartname.setText("Invalid part type");
-        
-        }
-        
-        }else{
-        Part part = new Part();
-        part.setImageNo(ImageNo);
-        part.setModelName(ModelName);
-        part.setPartName(PartNam);
-        part.setPartNo(PartNo);
-        part.setPartType(PartType);
-        PartDao partdao = new PartDao();
-        partdao.addPart(part);
+        } else if (!PartNam.matches("^[ a-zA-Z]*$")) {
+            labelpartname.setText("Invalid part type");
+
+        } else {
+            Part part = new Part();
+            part.setImageNo(ImageNo);
+            part.setModelName(ModelName);
+            part.setPartName(PartNam);
+            part.setPartNo(PartNo);
+            part.setPartType(PartType);
+            PartDao partdao = new PartDao();
+            partdao.addPart(part);
         }
     }
     static ObservableList<String> observableListOfObjects1;
@@ -519,10 +517,9 @@ public class BillController {
         arr1 = partdao.getModelData();
         ObservableList<String> observableListOfObjects = FXCollections.observableList(arr1);
         comboBox3 = new ComboBox<String>(observableListOfObjects);
-        comboBox3.setLayoutX(692.0);
-        comboBox3.setLayoutY(195.0);
-        comboBox3.setPrefWidth(150);
- 
+        comboBox3.setLayoutX(245.0);
+        comboBox3.setLayoutY(27.0);
+
         FileChooser chooser = new FileChooser();
 
         final AnchorPane anchorPane = (AnchorPane) root;
@@ -541,9 +538,8 @@ public class BillController {
                 observableListOfObjects1 = FXCollections.observableList(arr2);
                 System.out.println(observableListOfObjects1);
                 comboBox4 = new ComboBox<String>(observableListOfObjects1);
-                comboBox4.setLayoutX(692.0);
-                comboBox4.setLayoutY(237.0);
-                comboBox4.setPrefWidth(150);
+                comboBox4.setLayoutX(245.0);
+                comboBox4.setLayoutY(75.0);
                 comboBox4.valueProperty().addListener(new ChangeListener<String>() {
                     @Override
                     public void changed(ObservableValue ov, String t, String t1) {
@@ -570,31 +566,31 @@ public class BillController {
 
     }
     //add model
-    
+
     @FXML
     private TextField model_Name;
-    @FXML 
-    private Label labelmodel;
     @FXML
-    public void addModel(ActionEvent event){
-            String ModelName=model_Name.getText();
-            
-            labelmodel.setText("");
-            if(ModelName.length()== 0){
-                
-                labelmodel.setText("Fill this field");
-            }else if((!ModelName.matches("^[ a-zA-Z]*$"))||(!ModelName.matches("[0-9]+"))){
-                labelmodel.setText("Invalid Model Name");
-            }else{
+    private Label labelmodel;
+
+    @FXML
+    public void addModel(ActionEvent event) {
+        String ModelName = model_Name.getText();
+
+        labelmodel.setText("");
+        if (ModelName.length() == 0) {
+
+            labelmodel.setText("Fill this field");
+        } else {
             Model model = new Model();
             model.setModelName(ModelName);
-            ModelDao modeldao=new ModelDao();
+            ModelDao modeldao = new ModelDao();
             modeldao.addModel(model);
 
-            }
+        }
     }
-    
-    static ObservableList<Part> data=FXCollections.observableArrayList();;
+
+    static ObservableList<Part> data = FXCollections.observableArrayList();
+
     static int total;
     @FXML
     TextField partNo;
@@ -603,89 +599,112 @@ public class BillController {
     @FXML
     TextField quentity;
     @FXML
-    
-    public void singlePart(ActionEvent event) throws BiffException, WriteException, IOException{
-       
-        billPartTable.getColumns().clear();
-        int quentityOfPart=Integer.parseInt(quentity.getText());
-        
-        String partNumber=partNo.getText();
-        PartDao partDao=new PartDao();
-        Part part=partDao.singlePart(partNumber);
-        part.setQuentity(quentityOfPart);
-        if(part !=null){
-             Excel excel=new Excel();
-             int price=(excel.load(partNumber))*quentityOfPart;
-             part.setPrice(""+price);
-        total=total+price;  
-        amount.setText(""+total);
-        }
-         
-         data.add(part);
-        
-        
-        TableColumn partId = new TableColumn("Part No");
-        partId.setMinWidth(215);
-        partId.setCellValueFactory(
-                new PropertyValueFactory<Part, String>("PartNo")
-        );
+    Label partLabel;
 
-        TableColumn partName = new TableColumn("Part Name");
-        partName.setMinWidth(215);
-        partName.setCellValueFactory(
-                new PropertyValueFactory<Part, String>("PartName")
-        );
-         TableColumn quentitypart = new TableColumn("Quentity");
-        quentitypart.setMinWidth(50);
-        quentitypart.setCellValueFactory(
-                new PropertyValueFactory<Part, Integer>("quentity")
-        );
-        TableColumn Price = new TableColumn("Price");
-        Price.setMinWidth(295);
-        Price.setCellValueFactory(
-                new PropertyValueFactory<Part, String>("price")
-        );
+    @FXML
 
+    public void singlePart(ActionEvent event) throws BiffException, WriteException, IOException {
 
-        billPartTable.getColumns().addAll( partId, partName,quentitypart, Price);
-        billPartTable.setItems(data);
+        String que = quentity.getText();
+        String quentityval = partNo.getText();
+        if (quentityval.length() == 0) {
+            partLabel.setText("Enter Part");
+        } else if (!quentityval.matches("^[a-zA-Z0-9]*$")) {
+            partLabel.setText("Enter Part");
+        } else if (que.length() == 0) {
+            partLabel.setText("Enter quentity");
+        } else if (!que.matches("^[0-9]*$")) {
+            partLabel.setText("Enter valid quentity");
+        } else {
+            billPartTable.getColumns().clear();
 
+            int quentityOfPart = Integer.parseInt(quentity.getText());
+
+            String partNumber = partNo.getText();
+            PartDao partDao = new PartDao();
+            Part part = partDao.singlePart(partNumber);
+            part.setQuentity(quentityOfPart);
+            if (part != null) {
+                Excel excel = new Excel();
+                int price = (excel.load(partNumber)) * quentityOfPart;
+                part.setPrice("" + price);
+                total = total + price;
+                amount.setText("" + total);
             }
+
+            data.add(part);
+
+            TableColumn partId = new TableColumn("Part No");
+            partId.setMinWidth(215);
+            partId.setCellValueFactory(
+                    new PropertyValueFactory<Part, String>("PartNo")
+            );
+
+            TableColumn partName = new TableColumn("Part Name");
+            partName.setMinWidth(215);
+            partName.setCellValueFactory(
+                    new PropertyValueFactory<Part, String>("PartName")
+            );
+            TableColumn quentitypart = new TableColumn("Quentity");
+            quentitypart.setMinWidth(50);
+            quentitypart.setCellValueFactory(
+                    new PropertyValueFactory<Part, Integer>("quentity")
+            );
+            TableColumn Price = new TableColumn("Price");
+            Price.setMinWidth(295);
+            Price.setCellValueFactory(
+                    new PropertyValueFactory<Part, String>("price")
+            );
+
+            billPartTable.getColumns().addAll(partId, partName, quentitypart, Price);
+            billPartTable.setItems(data);
+        }
+    }
     @FXML
     TextField rowNumber;
     @FXML
-    
+    Label rowLabel;
+
+    @FXML
+
     public void deleteRow(ActionEvent event) {
-        int number=Integer.parseInt(rowNumber.getText())-1;
-        int price=Integer.parseInt(data.get(number).getPrice());
-        total=total-price;
-        data.remove(number);
-        TableColumn partId = new TableColumn("Part No");
-        partId.setMinWidth(240);
-        partId.setCellValueFactory(
-                new PropertyValueFactory<Part, String>("PartNo")
-        );
+        String pay = rowNumber.getText();
+        if (pay.length() == 0) {
+            rowLabel.setText("Enter row number");
+        } else if (!pay.matches("^[0-9]*$")) {
+            rowLabel.setText("Enter valid row number");
+        } else {
+            int number = Integer.parseInt(rowNumber.getText()) - 1;
+            int price = Integer.parseInt(data.get(number).getPrice());
+            total = total - price;
+            data.remove(number);
+            TableColumn partId = new TableColumn("Part No");
+            partId.setMinWidth(240);
+            partId.setCellValueFactory(
+                    new PropertyValueFactory<Part, String>("PartNo")
+            );
 
-        TableColumn partName = new TableColumn("Part Name");
-        partName.setMinWidth(239);
-        partName.setCellValueFactory(
-                new PropertyValueFactory<Part, String>("PartName")
-        );
-        TableColumn Price = new TableColumn("Price");
-        Price.setMinWidth(300);
-        Price.setCellValueFactory(
-                new PropertyValueFactory<Part, String>("price")
-        );
+            TableColumn partName = new TableColumn("Part Name");
+            partName.setMinWidth(239);
+            partName.setCellValueFactory(
+                    new PropertyValueFactory<Part, String>("PartName")
+            );
+            TableColumn Price = new TableColumn("Price");
+            Price.setMinWidth(300);
+            Price.setCellValueFactory(
+                    new PropertyValueFactory<Part, String>("price")
+            );
 
-        amount.setText(""+total);
-        billPartTable.getColumns().addAll( partId, partName, Price);
-        billPartTable.setItems(data);
-        
+            amount.setText("" + total);
+            rowLabel.setText("");
+            billPartTable.getColumns().addAll(partId, partName, Price);
+            billPartTable.setItems(data);
+        }
     }
-      /**
+    /**
      * Initializes the controller class.
      */
-    
+
     @FXML
     private TextField name;
     @FXML
@@ -708,26 +727,30 @@ public class BillController {
     private TextField serviceNo;
     @FXML
     private TextField payment;
-   static Customer customer=new Customer();;
+    @FXML
+    private TextField lastkm;
+    static Customer customer = new Customer();
+
+    ;
     
     
     @FXML
-    public void addCustomer(ActionEvent event){
-        String customerName=name.getText();
-        String customerAdress=address.getText();
-        String customerVehicleN0=vehicleNo.getText();
-        String customerVehicleType=vehicleType.getText();
-        LocalDate customerDateOfDelivery=dateOfDelivery.getValue();
-       Date date = java.sql.Date.valueOf(customerDateOfDelivery);
-       int freeService=Integer.parseInt(freeServiceNo.getText());
-       int payments=Integer.parseInt(payment.getText());
-       int ServiceNo=Integer.parseInt(serviceNo.getText());
-        String customerEngineNo=engineNo.getText();
-        String customerPhoneNo=phoneNo.getText();
-        String customerChassisNo=chassisNo.getText();
-        
-        
+    public void addCustomer(ActionEvent event) {
+        String customerName = name.getText();
+        String customerAdress = address.getText();
+        String customerVehicleN0 = vehicleNo.getText();
+        String customerVehicleType = vehicleType.getText();
+        LocalDate customerDateOfDelivery = dateOfDelivery.getValue();
+        Date date = java.sql.Date.valueOf(customerDateOfDelivery);
+        int freeService = Integer.parseInt(freeServiceNo.getText());
+        int payments = Integer.parseInt(payment.getText());
+        int ServiceNo = Integer.parseInt(serviceNo.getText());
+        String customerEngineNo = engineNo.getText();
+        String customerPhoneNo = phoneNo.getText();
+        String customerChassisNo = chassisNo.getText();
+
         customer.setFreeServiceNo(freeService);
+        customer.setLastKm(Integer.parseInt(lastkm.getText()));
         customer.setPayment(payments);
         customer.setServiceNo(ServiceNo);
         customer.setAddress(customerAdress);
@@ -738,116 +761,192 @@ public class BillController {
         customer.setPhoneNo(customerPhoneNo);
         customer.setVehicleNo(customerVehicleN0);
         customer.setVehicleType(customerVehicleType);
-        
-        CustomDao customerDao=new CustomDao();
+
+        CustomDao customerDao = new CustomDao();
         customerDao.addCustomer(customer);
-        
-        
-        
+
     }
     @FXML
     private TextField cycleNo;
-    
+
     @FXML
     private TextField km;
     @FXML
     private Label details;
-     @FXML
-    TextField servicePayment;  
     @FXML
-    public void Bill(ActionEvent event){
-        Stage stage = (Stage) AnchorPane.getScene().getWindow();
-        
-    System.out.println("popup");
-                CustomDao customerDao=new CustomDao();
-        int totalCost=Integer.parseInt(payment.getText());
+    TextField servicePayment;
+    @FXML
+    private Label cycleNumberLabel;
+    @FXML
+    private Label kmLabel;
+    @FXML
+    private Label paymentLabel;
+    @FXML
+    private Label amountDetails;
+    @FXML
+    private Label serviceLabel;
 
-        String cycleNumber=cycleNo.getText();
-        int Km=Integer.parseInt(km.getText());
-        int ServicePayment=Integer.parseInt(servicePayment.getText());
-        Bill bill=new Bill();
-        bill.setVehicleNo(cycleNumber);
-        bill.setKm(Km);
-        bill.setPayment(totalCost);
-        bill.setService(ServicePayment);
-        bill.setTotalCost(total);
-        
-        customerDao.addBill(data,bill);
-        int PaymentFee=total-totalCost;
-        Part part=new Part();
-        Customer customer1=customerDao.searchCustomer(cycleNumber);
-        customer.setServiceNo(customer1.getServiceNo()+1);
-        customer.setFreeServiceNo(customer1.getFreeServiceNo()-1);
-        customer.setVehicleNo(cycleNumber);
-                //update Customer
-        customer.setPayment(PaymentFee);
-        LocalDate now = LocalDate.now();
-        Date date = java.sql.Date.valueOf(now);
-        customer.setDateOfDelivery(date);
-        customerDao.updateCustomer(customer);
-        
-        
-        System.out.println(PaymentFee);
-        PartDao partDao=new PartDao();
-        partDao.addBill(part);
-        cycleNo.setText("");
-        km.setText("");
-        servicePayment.setText("");
-        amount.setText("");
-        payment.setText("");
-        data.clear();
-        
-    }
-    
     @FXML
-    public void checkCustomer(ActionEvent event){
-        String No=cycleNo.getText();
-        CustomDao customerDao=new CustomDao();
-        Customer customer=customerDao.searchCustomer(No);
-        LocalDate now = LocalDate.now();
-        Date date = java.sql.Date.valueOf(now);
-        total=total+customer.getPayment();
-        amount.setText(""+total);
-        long datess=(date.getTime()-customer.getDateOfDelivery().getTime());
-        int dates=(int) TimeUnit.DAYS.convert(datess, TimeUnit.MILLISECONDS);
-        details.setText("payment:"+customer.getPayment()+"\n"+"this is your "+customer.getServiceNo()+" and you have "+customer.getFreeServiceNo()+" free services \n"+"dates after last Service:"+dates+" Days");
+    public void Bill(ActionEvent event) {
+        String cycleNumber = cycleNo.getText();
+        String Km1 = km.getText();
+        String amounts = amount.getText();
+
+        String totalCost1 = payment.getText();
+        amountDetails.setText("");
+        cycleNumberLabel.setText("");
+        kmLabel.setText("");
+        paymentLabel.setText("");
+        if (cycleNumber.length() == 0 || Km1.length() == 0 || amounts.length() == 0 || totalCost1.length() == 0) {
+            if (cycleNumber.length() == 0) {
+                cycleNumberLabel.setText("Enter Vehicle Number");
+            }
+            if (Km1.length() == 0) {
+                kmLabel.setText("Enter milometer value");
+            }
+            if (amounts.length() == 0) {
+                amountDetails.setText("Enter Payment details");
+            }
+            if (totalCost1.length() == 0) {
+                paymentLabel.setText("enter Customer payment value ");
+            }
+
+        } else if (!cycleNumber.matches("^[a-zA-Z0-9]*$")) {
+            cycleNumberLabel.setText("Enter valid Vehicle Number");
+        } else if (!Km1.matches("^[0-9]*$")) {
+            kmLabel.setText("Enter the valid milometer value");
+        } else if (!("" + totalCost1).matches("^[0-9]*$")) {
+            paymentLabel.setText("Enter the valid payment value");
+        } else {
+            int totalCost = 0;
+            if (totalCost1 != null) {
+                totalCost = Integer.parseInt(totalCost1);
+            }
+
+            int Km = Integer.parseInt(Km1);
+            CustomDao customerDao = new CustomDao();
+
+            Bill bill = new Bill();
+            bill.setVehicleNo(cycleNumber);
+            bill.setKm(Km);
+            bill.setPayment(totalCost);
+            if (servicePayment.getText() != null) {
+                int ServicePayment = Integer.parseInt(servicePayment.getText());
+                bill.setService(ServicePayment);
+            }
+
+            bill.setTotalCost(total);
+
+            customerDao.addBill(data, bill);
+            int PaymentFee = total - totalCost;
+            Part part = new Part();
+            Customer customer1 = customerDao.searchCustomer(cycleNumber);
+            if (customer1.getFreeServiceNo() < 1) {
+                customer1.setFreeServiceNo(0);
+            } else {
+                customer1.setFreeServiceNo(customer1.getFreeServiceNo() - 1);
+            }
+            customer.setLastKm(Km);
+            customer.setServiceNo(customer1.getServiceNo() + 1);
+            customer.setFreeServiceNo(customer1.getFreeServiceNo());
+            customer.setVehicleNo(cycleNumber);
+            //update Customer
+            customer.setPayment(PaymentFee);
+            LocalDate now = LocalDate.now();
+            Date date = java.sql.Date.valueOf(now);
+            customer.setDateOfDelivery(date);
+            customerDao.updateCustomer(customer);
+
+            System.out.println(PaymentFee);
+            PartDao partDao = new PartDao();
+            partDao.addBill(part);
+            cycleNo.setText("");
+            km.setText("");
+            servicePayment.setText("");
+            amount.setText("");
+            payment.setText("");
+            data.clear();
+        }
+
     }
-    
-    
+
     @FXML
-    public void addServicePayment(ActionEvent event){
-        int service=Integer.parseInt(servicePayment.getText());
-        total=total+service;
-        amount.setText(""+total);
+    public void checkCustomer(ActionEvent event) {
+        String No = cycleNo.getText();
+        String Km1 = km.getText();
+        if (No.length() == 0) {
+            cycleNumberLabel.setText("Enter Vehicle Number");
+        } else if (!No.matches("^[a-zA-Z0-9]*$")) {
+            cycleNumberLabel.setText("Enter valid Vehicle Number");
+        } else if (Km1.length() == 0) {
+            kmLabel.setText("Enter milometer value");
+        } else if (!Km1.matches("^[0-9]*$")) {
+            kmLabel.setText("Enter the valid milometer value");
+        } else {
+            CustomDao customerDao = new CustomDao();
+            Customer customer = customerDao.searchCustomer(No);
+            if (customer != null) {
+                LocalDate now = LocalDate.now();
+                Date date = java.sql.Date.valueOf(now);
+                int kmvalue = Integer.parseInt(Km1) - customer.getLastKm();
+                total = total + customer.getPayment();
+                amount.setText("" + total);
+                System.out.println(No);
+                System.out.println(customer.getDateOfDelivery().getTime());
+                long datess = (date.getTime() - customer.getDateOfDelivery().getTime());
+                int dates = (int) TimeUnit.DAYS.convert(datess, TimeUnit.MILLISECONDS);
+
+                details.setText("Deferent of Km:" + kmvalue + "\n" + "payment:" + customer.getPayment() + "\n" + "this is your " + customer.getServiceNo() + " and you have " + customer.getFreeServiceNo() + " free services \n" + "dates after last Service:" + dates + " Days");
+                cycleNumberLabel.setText("");
+                kmLabel.setText("");
+
+            }
+
+        }
     }
-    
-      static ObservableList<String> observableListOfObjects4;
+
+    @FXML
+    public void addServicePayment(ActionEvent event) {
+        String pay = servicePayment.getText();
+        if (pay.length() == 0) {
+            serviceLabel.setText("Enter Service payment");
+        } else if (!pay.matches("^[0-9]*$")) {
+            serviceLabel.setText("Enter valid Service payment");
+        } else {
+
+            int service = Integer.parseInt(pay);
+            total = total + service;
+            amount.setText("" + total);
+            serviceLabel.setText("");
+        }
+    }
+
+    static ObservableList<String> observableListOfObjects4;
     static ComboBox<String> comboBox5;
     static ComboBox<String> comboBox6;
-    static  TableView<Part> partTable2 ;
+    static TableView<Part> partTable2;
+
     @FXML
     public void searchpart() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/searchPart.fxml"));
         final PartDao partdao = new PartDao();
         ArrayList arr1 = new ArrayList();
-        partTable2= new TableView<Part>();
+        partTable2 = new TableView<Part>();
         arr1 = partdao.getModelData();
         ObservableList<String> observableListOfObjects = FXCollections.observableList(arr1);
         comboBox5 = new ComboBox<String>(observableListOfObjects);
-        comboBox5.setLayoutX(713.0);
-            
-        comboBox5.setLayoutY(115.0);
-        comboBox5.setPrefWidth(150.0);
-        partTable2.setLayoutX(338);
-        partTable2.setLayoutY(274);
-        partTable2.setPrefHeight(401);
-        partTable2.setPrefWidth(741);
-         
+        comboBox5.setLayoutX(245.0);
+        comboBox5.setLayoutY(75.0);
+        partTable2.setLayoutX(40);
+        partTable2.setLayoutY(200);
+        partTable2.setPrefHeight(300);
+        partTable2.setPrefWidth(800);
+
         FileChooser chooser = new FileChooser();
 
         final AnchorPane anchorPane = (AnchorPane) root;
         anchorPane.getChildren().add(comboBox5);
-         anchorPane.getChildren().add(partTable2);
+        anchorPane.getChildren().add(partTable2);
         // comboBox.setId("modelName");
         comboBox5.valueProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -855,16 +954,14 @@ public class BillController {
 
                 comboBox5.getEditor().setText(t1);
                 ArrayList arr2 = new ArrayList();
-  
 
                 arr2 = partdao.getMainPartData(t1);
                 System.out.println(t1);
                 observableListOfObjects4 = FXCollections.observableList(arr2);
                 System.out.println(observableListOfObjects4);
                 comboBox6 = new ComboBox<String>(observableListOfObjects4);
-                comboBox6.setLayoutX(713.0);
-                comboBox6.setLayoutY(153.0);
-                comboBox6.setPrefWidth(150);
+                comboBox6.setLayoutX(245.0);
+                comboBox6.setLayoutY(100.0);
                 comboBox6.valueProperty().addListener(new ChangeListener<String>() {
                     @Override
                     public void changed(ObservableValue ov, String t, String t1) {
@@ -874,13 +971,12 @@ public class BillController {
                     }
 
                 });
-                 anchorPane.getChildren().add(comboBox6);
+                anchorPane.getChildren().add(comboBox6);
+
             }
 
         });
-        
         System.out.println(observableListOfObjects4);
-       
 
         Scene scene = new Scene(anchorPane);
         Stage stage = (Stage) AnchorPane.getScene().getWindow();
@@ -891,76 +987,71 @@ public class BillController {
         stage.show();
 
     }
-    
-          
-     //for part search table
+
     @FXML
     public void searchPart2(ActionEvent event) throws IOException {
         String model = comboBox5.getEditor().getText();
         String mainPart = comboBox6.getEditor().getText();
-        PartDao partdao=new PartDao();
+        PartDao partdao = new PartDao();
         ArrayList<Part> arr3 = new ArrayList<Part>();
-        arr3=partdao.searchpart3(model,mainPart);
+        arr3 = partdao.searchpart3(model, mainPart);
         final ObservableList<Part> data = FXCollections.observableArrayList();
         System.out.println(arr3.size());
-        for(int i=0;i<arr3.size();i++){
+        for (int i = 0; i < arr3.size(); i++) {
             data.add(arr3.get(i));
         }
-         TableColumn second = new TableColumn("Part Type");
-        second.setMinWidth(741/4);
+        TableColumn second = new TableColumn("Part Type");
+        second.setMinWidth(200);
         second.setCellValueFactory(
                 new PropertyValueFactory<>("PartType"));
-       
+
         TableColumn first = new TableColumn("Part Name");
-        first.setMinWidth(741/4);
+        first.setMinWidth(200);
         first.setCellValueFactory(
                 new PropertyValueFactory<>("PartName"));
-          TableColumn third = new TableColumn("Part No");
-        third.setMinWidth(741/4);
+        TableColumn third = new TableColumn("Part No");
+        third.setMinWidth(200);
         third.setCellValueFactory(
                 new PropertyValueFactory<>("PartNo"));
-          TableColumn four = new TableColumn("Quentity");
-        four.setMinWidth(741/4);
+        TableColumn four = new TableColumn("Quentity");
+        four.setMinWidth(200);
         four.setCellValueFactory(
                 new PropertyValueFactory<>("quant"));
- 
-         partTable2.setEditable(true);
-    
-        partTable2.getColumns().addAll(first,second,third,four);
+
+        partTable2.setEditable(true);
+
+        partTable2.getColumns().addAll(first, second, third, four);
         partTable2.setItems(data);
-     
-     
 
     }
     //for stock add
-    
-   static ObservableList<String> observableListOfObjects5;
+
+    static ObservableList<String> observableListOfObjects5;
     static ComboBox<String> comboBox7;
     static ComboBox<String> comboBox8;
-    static  TableView<Part> partTable3 ;
-     public void addStock() throws IOException {
-          Parent root = FXMLLoader.load(getClass().getResource("/fxml/addstock.fxml"));
-          final PartDao partdao = new PartDao();
-           ArrayList arr1 = new ArrayList();
-           arr1 = partdao.getModelData();
-            partTable3= new TableView<Part>();
-           ObservableList<String> observableListOfObjects = FXCollections.observableList(arr1);
+    static TableView<Part> partTable3;
+
+    public void addStock() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/addstock.fxml"));
+        final PartDao partdao = new PartDao();
+        ArrayList arr1 = new ArrayList();
+        arr1 = partdao.getModelData();
+        partTable3 = new TableView<Part>();
+        ObservableList<String> observableListOfObjects = FXCollections.observableList(arr1);
         comboBox7 = new ComboBox<String>(observableListOfObjects);
-         comboBox7.setLayoutX(713.0);
-            
-        comboBox7.setLayoutY(115.0);
-        comboBox7.setPrefWidth(150.0);
-        
-         partTable3.setLayoutX(498.0);
-        partTable3.setLayoutY(251.0);
-        partTable3.setPrefHeight(356.0);
-        partTable3.setPrefWidth(399.0);
-        
-          final AnchorPane anchorPane = (AnchorPane) root;
-           anchorPane.getChildren().add(comboBox7);
-            anchorPane.getChildren().add(partTable3);
-       
-           comboBox7.valueProperty().addListener(new ChangeListener<String>() {
+        comboBox7.setLayoutX(245.0);
+        comboBox7.setLayoutY(40.0);
+
+        partTable3.setLayoutX(150);
+        partTable3.setLayoutY(200);
+        partTable3.setPrefHeight(300);
+        partTable3.setPrefWidth(450);
+
+        final AnchorPane anchorPane = (AnchorPane) root;
+        anchorPane.getChildren().add(comboBox7);
+        anchorPane.getChildren().add(partTable3);
+
+        comboBox7.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue ov, String t, String t1) {
 
@@ -972,9 +1063,8 @@ public class BillController {
                 observableListOfObjects5 = FXCollections.observableList(arr2);
                 System.out.println(observableListOfObjects5);
                 comboBox8 = new ComboBox<String>(observableListOfObjects5);
-                 comboBox8.setLayoutX(713.0);
-                comboBox8.setLayoutY(153.0);
-                comboBox8.setPrefWidth(150);
+                comboBox8.setLayoutX(245.0);
+                comboBox8.setLayoutY(100.0);
                 comboBox8.valueProperty().addListener(new ChangeListener<String>() {
                     @Override
                     public void changed(ObservableValue ov, String t, String t1) {
@@ -989,37 +1079,38 @@ public class BillController {
             }
 
         });
-           
-           Scene scene = new Scene(anchorPane);
+
+        Scene scene = new Scene(anchorPane);
         Stage stage = (Stage) AnchorPane.getScene().getWindow();
         stage.setMaximized(true);
 
         stage.setTitle("Pathum Motors");
         stage.setScene(scene);
         stage.show();
-     }
-     //for search button
-   ArrayList<Part> arr3;
-    static ObservableList<Part> data1;   
-     @FXML
+    }
+    //for search button
+    ArrayList<Part> arr3;
+    static ObservableList<Part> data2;
+    @FXML
     private Label modelName;
-              @FXML
+
+    @FXML
     public void searchStock(ActionEvent event) throws IOException {
-      
+
         String model = comboBox7.getEditor().getText();
         String mainPart = comboBox8.getEditor().getText();
-        PartDao partdao=new PartDao();
+        PartDao partdao = new PartDao();
         arr3 = new ArrayList<Part>();
-        arr3=partdao.searchpart4(model,mainPart);
-        data1 = FXCollections.observableArrayList();
+        arr3 = partdao.searchpart4(model, mainPart);
+        data2 = FXCollections.observableArrayList();
         System.out.println(arr3.size());
-        for(int i=0;i<arr3.size();i++){
-            data1.add(arr3.get(i));
+        for (int i = 0; i < arr3.size(); i++) {
+            data2.add(arr3.get(i));
         }
-         
-         partTable3.setEditable(true);
-     
-      /*   Callback<TableColumn, TableCell> cellFactory =
+
+        partTable3.setEditable(true);
+
+        /*   Callback<TableColumn, TableCell> cellFactory =
                 new Callback<TableColumn, TableCell>() {
                      
                     @Override
@@ -1027,62 +1118,128 @@ public class BillController {
                         return new EditingCell();
                     }
                 };*/
-       TableColumn<Part,String> first = new TableColumn<Part,String>("Part No");
-       TableColumn<Part,String> second = new TableColumn<Part,String>("Quentity");
+        TableColumn<Part, String> first = new TableColumn<Part, String>("Part No");
+        TableColumn<Part, String> second = new TableColumn<Part, String>("Quentity");
         second.setCellValueFactory(new PropertyValueFactory("quantity"));
-        second.setMinWidth(399/2);
+        second.setMinWidth(399 / 2);
         first.setCellValueFactory(new PropertyValueFactory("PartNo"));
-        first.setMinWidth(399/2);
-          
+        first.setMinWidth(399 / 2);
+
         //second.setCellFactory(TextFieldTableCell.<Part>forTableColumn());
         second.setCellFactory(TextFieldTableCell.<Part>forTableColumn());
-        
+
         second.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Part, String>>() {
-  
-        @Override
-        public void handle(TableColumn.CellEditEvent<Part, String> event) {
-            ((Part)event.getTableView().getItems().get(event.getTablePosition().getRow())).setQuantity(event.getNewValue());
-        }
-    });
-    
-          
-      
-      
-         partTable3.getColumns().addAll(first,second);
-        
-       partTable3.setItems(data1);
-     
-     String a= (String) partTable3.getColumns().get(1).getCellData(0);
-      System.out.println(a);       
+
+            @Override
+            public void handle(TableColumn.CellEditEvent<Part, String> event) {
+                ((Part) event.getTableView().getItems().get(event.getTablePosition().getRow())).setQuantity(event.getNewValue());
+            }
+        });
+
+        partTable3.getColumns().addAll(first, second);
+
+        partTable3.setItems(data2);
+
+        String a = (String) partTable3.getColumns().get(1).getCellData(0);
+        System.out.println(a);
 
     }
-    
+
     //for add stock
-    
-
-              @FXML
+    @FXML
     public void addStock1(ActionEvent event) throws IOException {
-        PartDao partdao=new PartDao();
-       
-        
-        for(int i=0;i<data1.size();i++){
-           
-            String aa=(String) partTable3.getColumns().get(1).getCellData(i);
+        PartDao partdao = new PartDao();
+
+        for (int i = 0; i < data2.size(); i++) {
+
+            String aa = (String) partTable3.getColumns().get(1).getCellData(i);
             System.out.println(aa);
-            String bb=(String) partTable3.getColumns().get(0).getCellData(i);
+            String bb = (String) partTable3.getColumns().get(0).getCellData(i);
             System.out.println(bb);
-            int cc=data1.get(i).getQuant();
-             System.out.println(cc);
-            int kk=cc+Integer.parseInt(aa);
+            int cc = data2.get(i).getQuant();
+            System.out.println(cc);
+            int kk = cc + Integer.parseInt(aa);
             System.out.println(kk);
-            partdao.addstock(kk,bb);
-            data1.get(i).setQuant(kk);
-            
+            partdao.addstock(kk, bb);
+            data2.get(i).setQuant(kk);
+
         }
-        
+
     }
-     }
+    @FXML
+    TextField customer1;
+    @FXML
+    TableView table;
+    @FXML
+    TableView customerTable;
 
+    static ObservableList<Bill> data3
+            = FXCollections.observableArrayList();
 
+    @FXML
+    public void search(ActionEvent event) {
+//        Stage stage = (Stage) anchorPane.getScene().getWindow();
+        String customerNumber = customer1.getText();
+        CustomDao customerDao = new CustomDao();
+        Customer customer = customerDao.searchCustomer(customerNumber);
+        BillDao billDao = new BillDao();
+        ArrayList<Bill> bills = billDao.searchBill(customerNumber);
+        for (int i = 0; i < bills.size(); i++) {
+            data3.add(bills.get(i));
 
+        }
 
+        TableColumn partId = new TableColumn("Date");
+        partId.setMinWidth(100);
+        partId.setCellValueFactory(
+                new PropertyValueFactory<Bill, String>("date")
+        );
+
+        TableColumn partName = new TableColumn("Km");
+        partName.setMinWidth(100);
+        partName.setCellValueFactory(
+                new PropertyValueFactory<Bill, Integer>("km")
+        );
+        TableColumn parts = new TableColumn("Parts and Quentity");
+        parts.setMinWidth(100);
+        parts.setCellValueFactory(
+                new PropertyValueFactory<Bill, String>("parts")
+        );
+        TableColumn quentitypart = new TableColumn("Service Cost");
+        quentitypart.setMinWidth(100);
+        quentitypart.setCellValueFactory(
+                new PropertyValueFactory<Bill, Integer>("service")
+        );
+        TableColumn Price = new TableColumn("TotalCost");
+        Price.setMinWidth(100);
+        Price.setCellValueFactory(
+                new PropertyValueFactory<Bill, Integer>("totalCost")
+        );
+        TableColumn payment = new TableColumn("Payment");
+        payment.setMinWidth(100);
+        payment.setCellValueFactory(
+                new PropertyValueFactory<Bill, Integer>("payment")
+        );
+
+        table.getColumns().addAll(partId, partName, parts, quentitypart, Price, payment);
+        table.setItems(data);
+//        AnchorPane anchor = new AnchorPane();
+//        anchor.getChildren().add(table);
+//        Scene scene = new Scene(anchor);
+//        stage.setScene(scene);
+//        stage.show();
+    }
+
+    @FXML
+    void searchCustomer(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/searchCustomer.fxml"));
+        AnchorPane anchorPane = (AnchorPane) root;
+        Scene scene = new Scene(anchorPane);
+
+        stage.setMaximized(true);
+
+        stage.setTitle("Pathum Motors");
+        stage.setScene(scene);
+        stage.show();
+    }
+}

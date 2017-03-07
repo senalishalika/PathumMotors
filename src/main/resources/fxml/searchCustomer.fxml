@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.text.*?>
-<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="AnchorPane" prefHeight="700.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.BillController">
-  <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d2d3" height="700.0" layoutX="-2.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="251.0" />
-      <MenuBar cacheHint="SPEED" prefHeight="25.0" prefWidth="1370.0">
+<AnchorPane fx:id="AnchorPane"  prefHeight="700.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tml.pathummoto.BillController">
+   <children>
+        <MenuBar cacheHint="SPEED" prefHeight="25.0" prefWidth="1370.0">
         <menus>
           <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="Home">
             <items>
@@ -53,22 +51,14 @@
         </menus>
          
       </MenuBar>
-      
-      <Label layoutX="547.0" layoutY="117.0" prefHeight="20.0" prefWidth="131.0" text="Model Name">
+      <Button layoutX="840.0" layoutY="160.0" mnemonicParsing="false" onAction="#search" text="Search" />
+      <TextField fx:id="customer1" layoutX="623.0" layoutY="160.0" prefHeight="25.0" prefWidth="197.0" />
+      <Label layoutX="409.0" layoutY="164.0" prefHeight="20.0" prefWidth="149.0" text="Customer Vehicle No" textFill="#0015ff">
          <font>
             <Font size="14.0" />
-         </font></Label>
-      <Label layoutX="547.0" layoutY="155.0" prefHeight="17.0" prefWidth="76.0" text="Part Type">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Button layoutX="811.0" layoutY="204.0" mnemonicParsing="false" onAction="#searchPart2" text="Search" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d2d3" height="700.0" layoutX="1119.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="251.0" />
-      <Label layoutX="557.0" layoutY="54.0" prefHeight="17.0" prefWidth="343.0" text="Search Part Details">
-         <font>
-            <Font size="34.0" />
          </font>
       </Label>
-     
+      <TableView fx:id="table" layoutX="556.0" layoutY="232.0" prefHeight="400.0" prefWidth="608.0" />
+      <TableView fx:id="customerTable" layoutX="135.0" layoutY="232.0" prefHeight="400.0" prefWidth="400.0" />
    </children>
 </AnchorPane>

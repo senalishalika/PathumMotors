@@ -28,4 +28,6 @@ com\tml\pathummoto\BillController$1.class
 com\tml\pathummoto\BillController$6.class
 com\tml\pathummoto\model\Bill.class
 com\tml\pathummoto\BillController$9.class
+com\tml\pathummoto\Dao\BillDao.class
+com\tml\pathummoto\CustomerController.class
 com\tml\pathummoto\PartController.class
